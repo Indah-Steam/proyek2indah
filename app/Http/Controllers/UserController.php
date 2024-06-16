@@ -40,7 +40,7 @@ class UserController extends Controller
         $data->role         = $request->role;
         $data->tglLahir     = $request->tglLahir;
         $data->is_active    = 1;
-        $data->is_mamber    = 0;
+        $data->is_member    = 0;
         $data->is_admin     = 1;
 
         // dd($request);die;
@@ -120,7 +120,7 @@ class UserController extends Controller
         $data->role         = 0;
         $data->tglLahir     = $request->date;
         $data->is_active    = 1;
-        $data->is_mamber    = 1;
+        $data->is_member    = 1;
         $data->is_admin     = 0;
 
         // dd($request);die;

@@ -98,7 +98,7 @@ class Controller extends BaseController
         ];
         $detailTransaksi::create($fieldDetail);
 
-        // update cart 
+        // update cart
         $fieldCart = [
             'qty'          => $data['qty'],
             'price'        => $data['total'],
@@ -238,7 +238,7 @@ class Controller extends BaseController
         $user = new User;
         $proses = $user::where('email', $request->email)->first();
 
-        if ($proses->is_admin === 0) {
+        if ($proses->is_admin == 0) {
             Session::flash('error', 'Kamu bukan admin');
             return back();
         } else {

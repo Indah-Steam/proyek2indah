@@ -78,7 +78,7 @@ section {
 footer {
     position: static;
     bottom: 0;
-    background-color: #025464;
+    background-color: rgb(22, 47, 44);
     color: white;
     text-align: center;
 }
