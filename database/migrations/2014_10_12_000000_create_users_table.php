@@ -24,8 +24,6 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('tlp');
             $table->date('tglLahir');
-            $table->boolean('is_active')->default(1);
-            $table->integer('role');
             $table->rememberToken();
             $table->timestamps();
         });

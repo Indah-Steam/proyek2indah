@@ -48,7 +48,7 @@
                                     <button class="btn btn-info editModal" data-id="{{ $x->id }}">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <button class="btn btn-danger deleteData" data-id="{{ $x->id }}">
+                                    <button class="btn btn-danger deleteData " data-id="{{ $x->id }}">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </td>

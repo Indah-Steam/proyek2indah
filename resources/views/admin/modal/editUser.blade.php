@@ -30,7 +30,7 @@
                     <div class="mb-3 row">
                         <label for="email" class="col-sm-5 col-form-label">Email Karyawan</label>
                         <div class="col-sm-7">
-                            <input type="email" class="form-control" id="email" name="email" 
+                            <input type="email" class="form-control" id="email" name="email"
                             autocomplete="off" value="{{$data->email}}">
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                         <label for="password" class="col-sm-5 col-form-label">Password Karyawan</label>
                         <div class="col-sm-7">
                             <input type="password" class="form-control" id="password" name="password"
-                                autocomplete="off" value="{{password_needs_rehash($data->password,'PASSWORD_BCRYPT')}}">
+                                autocomplete="off">
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -59,17 +59,6 @@
                             <input type="date" class="form-control" id="tglLahir" name="tglLahir" value="{{$data->tglLahir}}">
                         </div>
                     </div>
-                    <div class="mb-3 row">
-                        <label for="role" class="col-sm-5 col-form-label">Jabatan</label>
-                        <div class="col-sm-7">
-                            <select type="text" class="form-control" id="role" name="role">
-                                <option value=""> Pilih Role </option>
-                                <option value="1" {{$data->role === 1 ? 'selected' : ''}}>Admin</option>
-                                <option value="2" {{$data->role === 0 ? 'selected' : ''}}>Manager</option>
-                            </select>
-                        </div>
-                    </div>
-
                     <div class="mb-3 row">
                         <label for="foto" class="col-sm-5 col-form-label">Foto Profil</label>
                         <div class="col-sm-7">

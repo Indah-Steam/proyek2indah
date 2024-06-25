@@ -19,8 +19,6 @@
                         <th>NIK</th>
                         <th>Join Date</th>
                         <th>Nama Karyawan</th>
-                        <th>Role</th>
-                        <th>Status</th>
                         <th>#</th>
                     </tr>
                 </thead>
@@ -34,14 +32,6 @@
                             <td>{{ $x->nik }}</td>
                             <td>{{ $x->created_at }}</td>
                             <td>{{ $x->name }}</td>
-                            <td>
-                                <span
-                                    class='badge text-bg-{{ $x->role === 1 ? 'info' : 'success' }}'>{{ $x->role === 1 ? 'Admin' : 'Manager' }}</span>
-                            </td>
-                            <td>
-                                <span
-                                    class="badge text-bg-{{ $x->is_active === 1 ? 'success' : 'danger' }}">{{ $x->is_active === 1 ? 'Active' : 'No Active' }}</span>
-                            </td>
                             <td>
                                 <button class="btn btn-info editModal" data-id="{{ $x->id }}">
                                     <i class="fas fa-edit"></i>

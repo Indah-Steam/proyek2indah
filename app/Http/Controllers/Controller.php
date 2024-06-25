@@ -213,13 +213,14 @@ class Controller extends BaseController
             'title'     => 'Admin User Management',
         ]);
     }
-    public function report()
+    public function ekspedisi()
     {
-        return view('admin.page.report', [
-            'name'      => "Report",
-            'title'     => 'Admin Report',
+        return view('admin.page.ekspedisi', [
+            'name'      => "Ekspedisi",
+            'title'     => 'Ekspedisi',
         ]);
     }
+
     public function login()
     {
         return view('admin.page.login', [

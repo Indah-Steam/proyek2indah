@@ -58,17 +58,6 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="role" class="col-sm-5 col-form-label">Jabatan</label>
-                        <div class="col-sm-7">
-                            <select type="text" class="form-control" id="role" name="role">
-                                <option value=""> Pilih Role </option>
-                                <option value="1">Admin</option>
-                                <option value="2">Manager</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="mb-3 row">
                         <label for="foto" class="col-sm-5 col-form-label">Foto Profil</label>
                         <div class="col-sm-7">
                             <input type="hidden" name="foto">

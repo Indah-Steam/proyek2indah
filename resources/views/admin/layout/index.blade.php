@@ -33,13 +33,15 @@
         @include('admin.component.sidebar')
         <div style="margin-left: 280px; width:100%; margin-top:10px;">
             @include('admin.component.navbar')
-            <div class="mt-2">
+            <hr>
+            <div class="mt-4">
                 <section>
                     <article>
                         @yield('content')
                     </article>
                 </section>
             </div>
+            <hr>
         </div>
     </main>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EkspedisiController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransaksiAdminController;
@@ -43,7 +44,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/dashboard', [Controller::class, 'admin'])->name('admin');
     Route::get('/admin/product', [ProductController::class, 'index'])->name('product');
     Route::get('/admin/logout', [Controller::class, 'logout'])->name('logout');
-    Route::get('/admin/report', [Controller::class, 'report'])->name('report');
+    Route::get('/admin/ekspedisi', [Controller::class, 'ekspedisi'])->name('ekspedisi');
     Route::get('/admin/addModal', [ProductController::class, 'addModal'])->name('addModal');
 
     Route::GET('/admin/user_management', [UserController::class, 'index'])->name('userManagement');
@@ -59,4 +60,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::DELETE('/admin/deleteData/{id}', [ProductController::class, 'destroy'])->name('deleteData');
 
     Route::GET('/admin/transaksi', [TransaksiAdminController::class, 'index'])->name('transaksi.admin');
+
+    Route::get('/ekspedisis', [EkspedisiController::class, 'index']);
 });
