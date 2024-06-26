@@ -30,6 +30,15 @@
                             </div>
                         </div>
                         <div class="row mb-3">
+                            <label for="tlp" class="col-form-label col-sm-3">Metode Pembayaran</label>
+                            <div class="col-sm-9">
+                                    <select name="metode" class="form-control eksp" id="metode">
+                                        <option value="">-- Pilih Metode Pembayaran --</option>
+                                        {{-- <option value="metode">{{ $data }}</option> --}}
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label for="ekspedisi" class="col-form-label col-sm-3">Ekspedisi</label>
                             <div class="col-sm-9">
                                 <select name="ekspedisi" class="form-control eksp" id="ekspedisi">

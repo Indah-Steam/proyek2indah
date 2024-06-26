@@ -122,6 +122,7 @@ class Controller extends BaseController
         $dbTransaksi->nama_customer     = $data['namaPenerima'];
         $dbTransaksi->alamat            = $data['alamatPenerima'];
         $dbTransaksi->no_tlp            = $data['tlp'];
+        $dbTransaksi->bayar            = $data['bayar'];
         $dbTransaksi->ekspedisi         = $data['ekspedisi'];
 
         $dbTransaksi->save();
