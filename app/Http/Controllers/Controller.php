@@ -51,12 +51,12 @@ class Controller extends BaseController
             'data'      => $db
         ]);
     }
-    public function contact()
+    public function tentang()
     {
         $countKeranjang = tblCart::where(['idUser' => 'guest123', 'status' => 0])->count();
 
-        return view('pelanggan.page.contact', [
-            'title'     => 'Contact Us',
+        return view('pelanggan.page.tentang', [
+            'title'     => 'Tentang Kami',
             'count'     => $countKeranjang,
         ]);
     }

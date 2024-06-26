@@ -27,7 +27,7 @@ Route::GET('/logout_pelanggan', [UserController::class, 'logout'])->name('logout
 
 Route::get('/shop', [Controller::class, 'shop'])->name('shop');
 Route::get('/transaksi', [Controller::class, 'transaksi'])->name('transaksi');
-Route::get('/contact', [Controller::class, 'contact'])->name('contact');
+Route::get('/tentang', [Controller::class, 'tentang'])->name('tentang');
 
 Route::get('/checkout', [Controller::class, 'checkout'])->name('checkout');
 Route::POST('/checkout/proses/{id}', [Controller::class, 'prosesCheckout'])->name('checkout.product');
