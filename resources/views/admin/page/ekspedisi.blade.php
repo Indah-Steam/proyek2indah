@@ -3,7 +3,7 @@
 @section('content')
 <div class="card rounded-full">
     <div class="card-header bg-transparent d-flex justify-content-between">
-        <button class="btn btn-info" id="addData">
+        <button class="btn btn-info" id="addData" data-bs-toggle="modal" data-bs-target="#addModal">
             <i class="fa fa-plus">
                 <span>Tambah Ekspedisi</span>
             </i>
@@ -19,27 +19,49 @@
                         <th>Nama Ekspedisi</th>
                     </tr>
                 </thead>
-                {{-- <tbody>
-                    @foreach($ekspedisis as $index => $ekspedisi)
+                <tbody>
+                    {{-- @foreach($ekspedisis as $index => $ekspedisi) --}}
                         <tr>
-                            <td>{{ $index + 1 }}</td> <!-- Nomor urut -->
-                            <td>{{ $ekspedisi->nama }}</td> <!-- Nama Ekspedisi -->
+                            <td>
+                                {{-- {{ $index + 1 }} --}}
+                            </td>
+                            <td>
+                                {{-- {{ $ekspedisi->nama }} --}}
+                            </td>
                         </tr>
-                    @endforeach
-                </tbody> --}}
+                    {{-- @endforeach --}}
+                </tbody>
             </table>
         </div>
-        <div class="pagination d-flex flex-row justify-content-between">
-            <div class="showData">
-                {{-- Data ditampilkan {{ $data->count() }} dari {{ $data->total() }} --}}
+
+    </div>
+</div>
+
+<div class="modal fade" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content modal-md">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Ekspedisi</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div>
-                {{-- {{ $data->links() }} --}}
-            </div>
+            <form action="{{ route('ekspedisi.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="mb-3 row">
+                        <label for="namaEkspedisi" class="col-sm-5 col-form-label">Nama Ekspedisi</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="namaEkspedisi" name="nama" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-<div class="tampilData" style="display: none;"></div>
-<div class="tampilEditData" style="display: none;"></div>
 
 @endsection

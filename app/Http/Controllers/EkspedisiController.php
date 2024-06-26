@@ -3,18 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\ekspedisi;
+use App\Models\Ekspedisi;
 
 class EkspedisiController extends Controller
 {
-    public function index()
+    // Menampilkan form dan daftar ekspedisi
+    public function create()
+    {
+        $ekspedisis = Ekspedisi::all();
+        return view('ekspedisi.create', compact('ekspedisis'));
+    }
 
-        {
-            $ekspedisis = Ekspedisi::all();
-            return view('admin.page.ekspedisi', compact('ekspedisis'));
-        }
-        protected $table = 'ekspedisis'; // Nama tabel di database
-        protected $fillable = ['nama']; // Kolom yang bisa diisi
+    // Menyimpan ekspedisi baru
+    public function store(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'nama' => 'required|string|max:255',
+        ]);
+
+        // Simpan data ekspedisi ke database
+        Ekspedisi::create([
+            'nama' => $request->nama,
+        ]);
+
+        // Redirect kembali ke halaman form dengan pesan sukses
+        return redirect()->route('createEkspedisi')->with('success', 'Ekspedisi berhasil ditambahkan.');
+
+    }
 }
+
