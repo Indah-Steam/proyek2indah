@@ -24,31 +24,7 @@
                                 value="{{ $data->nama_product }}">
                         </div>
                     </div>
-                    <div class="mb-3 row">
-                        <label for="type" class="col-sm-5 col-form-label">Type Product</label>
-                        <div class="col-sm-7">
-                            <select type="text" class="form-control" id="type" name="type">
-                                <option value=""> Pilih Type </option>
-                                <option value="celana" {{ $data->type === 'celana' ? 'selected' : '' }}>Celana</option>
-                                <option value="baju" {{ $data->type === 'baju' ? 'selected' : '' }}>Baju</option>
-                                <option value="aksesoris" {{ $data->type === 'aksesoris' ? 'selected' : '' }}>Aksesoris
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="kategori" class="col-sm-5 col-form-label">Kategori Product</label>
-                        <div class="col-sm-7">
-                            <select type="text" class="form-control" id="kategori" name="kategori">
-                                <option value=""> Pilih Kategori </option>
-                                <option value="Pria" {{ $data->kategory === 'Pria' ? 'selected' : '' }}>Pria</option>
-                                <option value="Wanita" {{ $data->kategory === 'wanita' ? 'selected' : '' }}>Wanita
-                                </option>
-                                <option value="Anak-anak" {{ $data->kategory === 'Anak-anak' ? 'selected' : '' }}>
-                                    Anak-anak</option>
-                            </select>
-                        </div>
-                    </div>
+                    
                     <div class="mb-3 row">
                         <label for="harga" class="col-sm-5 col-form-label">Harga Product</label>
                         <div class="col-sm-7">

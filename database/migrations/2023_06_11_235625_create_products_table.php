@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('sku');
             $table->string('nama_product');
-            $table->string('type');
-            $table->string('kategory');
             $table->bigInteger('harga');
             $table->float('discount');
             $table->integer('quantity');

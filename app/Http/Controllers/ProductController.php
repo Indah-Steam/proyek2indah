@@ -43,8 +43,6 @@ class ProductController extends Controller
         $data = new product;
         $data->sku          = $request->sku;
         $data->nama_product = $request->nama;
-        $data->type         = $request->type;
-        $data->kategory     = $request->kategori;
         $data->harga        = $request->harga;
         $data->quantity     = $request->quantity;
         $data->discount     = 10 / 100;
@@ -76,7 +74,7 @@ class ProductController extends Controller
             ]
         )->render();
     }
-    
+
     public function update(UpdateproductRequest $request, product $product, $id)
     {
         $data = product::findOrFail($id);
@@ -93,8 +91,6 @@ class ProductController extends Controller
         $field = [
             'sku'                   => $request->sku,
             'nama_product'          => $request->nama,
-            'type'                  => $request->type,
-            'kategory'              => $request->kategori,
             'harga'                 => $request->harga,
             'quantity'              => $request->quantity,
             'discount'              => 10 / 100,

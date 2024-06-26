@@ -22,28 +22,7 @@
                             <input type="text" class="form-control" id="nameProduct" name="nama">
                         </div>
                     </div>
-                    <div class="mb-3 row">
-                        <label for="type" class="col-sm-5 col-form-label">Type Product</label>
-                        <div class="col-sm-7">
-                            <select type="text" class="form-control" id="type" name="type">
-                                <option value=""> Pilih Type </option>
-                                <option value="celana">Celana</option>
-                                <option value="baju">Baju</option>
-                                <option value="aksesoris">Aksesoris</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="kategori" class="col-sm-5 col-form-label">Kategori Product</label>
-                        <div class="col-sm-7">
-                            <select type="text" class="form-control" id="kategori" name="kategori">
-                                <option value=""> Pilih Kategori </option>
-                                <option value="Pria">Pria</option>
-                                <option value="Wanita">Wanita</option>
-                                <option value="Anak-anak">Anak-anak</option>
-                            </select>
-                        </div>
-                    </div>
+                    
                     <div class="mb-3 row">
                         <label for="harga" class="col-sm-5 col-form-label">Harga Product</label>
                         <div class="col-sm-7">
@@ -67,7 +46,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-success">Save</button>

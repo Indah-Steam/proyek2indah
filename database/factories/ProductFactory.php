@@ -20,8 +20,6 @@ class ProductFactory extends Factory
         return [
             'sku'                   => Str::random(10),
             'nama_product'          => fake()->name(),
-            'type'                  => "Celana",
-            'kategory'              => "Pria",
             'harga'                 => 100000,
             'quantity'              => 10,
             'discount'              => 10 / 100,

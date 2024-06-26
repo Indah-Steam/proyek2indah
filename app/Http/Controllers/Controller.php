@@ -202,7 +202,6 @@ class Controller extends BaseController
             'totalProduct'  => $dataProduct,
             'sumStock'      => $dataStock,
             'dataTransaksi' => $dataTransaksi,
-            'dataPenghasilan' => $dataPenghasilan,
         ]);
     }
 

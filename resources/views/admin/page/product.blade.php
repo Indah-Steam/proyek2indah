@@ -19,7 +19,6 @@
                         <th>Date In</th>
                         <th>SKU</th>
                         <th>Product Name</th>
-                        <th>Category</th>
                         <th>Price</th>
                         <th>Stock</th>
                         <th>#</th>
@@ -40,7 +39,6 @@
                                 <td>{{ $x->created_at }}</td>
                                 <td>{{ $x->sku }}</td>
                                 <td>{{ $x->nama_product }}</td>
-                                <td>{{ $x->type . ' ' . $x->kategory }}</td>
                                 <td>{{ $x->harga }}</td>
                                 <td>{{ $x->quantity }}</td>
                                 <td>

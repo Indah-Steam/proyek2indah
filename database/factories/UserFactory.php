@@ -24,7 +24,6 @@ class UserFactory extends Factory
             'nik'       => date('Ymd').rand(000,999),
             'alamat'    => fake()->address(),
             'tlp'       => fake()->phoneNumber(),
-            'role'      => rand(0,1),
             'tglLahir'  => fake()->date('Y-m-d','now'),
             'is_active' => 1,
             'is_mamber' => 0,
