@@ -27,6 +27,15 @@
                     </div>
                 </a>
             </li>
+            </li>
+            {{-- <li class="navbar-item rounded {{ Request::path() === 'admin/bayar' ? 'bg-warning' : '' }} ">
+                <a href="product">
+                    <div class="d-flex gap-3">
+                        <span class="material-icons">inventory</span>
+                        <p class="m-0 p-0">Product</p>
+                    </div>
+                </a>
+            </li> --}}
             <li class="navbar-item rounded {{ Request::path() === 'admin/ekspedisi' ? 'bg-warning' : '' }} ">
                 <a href="ekspedisi">
                     <div class="d-flex gap-3">
