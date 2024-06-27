@@ -15,26 +15,13 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Foto</th>
-                        <th>Date In</th>
-                        <th>SKU</th>
-                        <th>Product Name</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                        <th>#</th>
+                        <th>Nama ekspedisi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="align-middle">
+                    <tr>
                         <td></td>
-                                <input type="hidden" id="sku">
-                                    <button class="btn btn-info">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="btn btn-danger deleteData">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
