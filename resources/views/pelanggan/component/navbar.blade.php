@@ -7,11 +7,11 @@
         <div class="collapse navbar-collapse justify-content-end gap-4" id="navbarNav">
             <ul class="navbar-nav gap-4">
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::path() == '/' ? 'active' : '' }}" aria-current="page"
-                        href="/">Home</a>
+                    <a class="nav-link {{ Request::path() == 'shop' ? 'active' : '' }}" href="/shop">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::path() == 'shop' ? 'active' : '' }}" href="/shop">Shop</a>
+                    <a class="nav-link {{ Request::path() == '/' ? 'active' : '' }}" aria-current="page"
+                        href="/">Shop</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ Request::path() == 'tentang' ? 'active' : '' }}" href="/tentang">Tentang Kami</a>
@@ -49,13 +49,6 @@
                         @if ($count)
                             <div class="circle">{{ $count }}</div>
                         @endif
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <div class="notif">
-                        <a href="/checkOut" class="fs-5 nav-link {{ Request::path() == 'checkOut' ? 'active' : '' }}">
-                            <i class="fa fa-cash-register"></i>
-                        </a>
                     </div>
                 </li>
             </ul>

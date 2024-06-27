@@ -43,10 +43,6 @@
                                     <i class="fa fa-shopping-cart"></i>
                                     Checkout
                                 </button>
-                                <button class="btn btn-danger col-sm-5">
-                                    <i class="fa fa-trash-alt"></i>
-                                    Delete
-                                </button>
                             </div>
                         </div>
                     </form>

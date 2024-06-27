@@ -35,14 +35,6 @@
                     </div>
                 </a>
             </li>
-            <li class="navbar-item rounded {{ Request::path() === 'admin/transaksi' ? 'bg-warning' : '' }} ">
-                <a href="transaksi">
-                    <div class="d-flex gap-3">
-                        <span class="material-icons">receipt_long</span>
-                        <p class="m-0 p-0">Transaksi</p>
-                    </div>
-                </a>
-            </li>
             <li class="navbar-item">
                 <a href="logout">
                     <div class="d-flex gap-3">

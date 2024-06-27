@@ -61,13 +61,4 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::GET('/admin/transaksi', [TransaksiAdminController::class, 'index'])->name('transaksi.admin');
 
-    Route::get('/ekspedisis', [EkspedisiController::class, 'index']);
-
-    Route::get('/ekspedisis/create', [EkspedisiController::class, 'create'])->name('createEkspedisi');
-    Route::post('/ekspedisis', [EkspedisiController::class, 'store'])->name('addEkspedisi');
-
-
-
-Route::get('/admin/ekspedisis', [EkspedisiController::class, 'index'])->name('ekspedisi.index');
-Route::post('/admin/ekspedisis', [EkspedisiController::class, 'store'])->name('ekspedisi.store');
 });

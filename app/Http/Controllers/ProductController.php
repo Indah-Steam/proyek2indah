@@ -18,9 +18,9 @@ class ProductController extends Controller
     {
         $data = product::paginate(3);
         return view('admin.page.product', [
-            'name' => "Product",
-            'title' => 'Admin Product',
-            'data' => $data,
+            'name'      => "Product",
+            'title'     => 'Admin Product',
+            'data'      => $data,
         ]);
     }
 
@@ -29,9 +29,9 @@ class ProductController extends Controller
      */
     public function addModal()
     {
-        return view('admin.modal.addModal', [
+        return view('admin/modal/addModal', [
             'title' => 'Tambah Data Product',
-            'sku' => 'BRG' . rand(10000, 99999),
+            'sku'   => 'BRG' . rand(10000, 99999),
         ]);
     }
 
@@ -41,12 +41,12 @@ class ProductController extends Controller
     public function store(StoreproductRequest $request)
     {
         $data = new product;
-        $data->sku = $request->sku;
+        $data->sku          = $request->sku;
         $data->nama_product = $request->nama;
-        $data->harga = $request->harga;
-        $data->quantity = $request->quantity;
-        $data->discount = 10 / 100;
-        $data->is_active = 1;
+        $data->harga        = $request->harga;
+        $data->quantity     = $request->quantity;
+        $data->discount     = 10 / 100;
+        $data->is_active    = 1;
 
         if ($request->hasFile('foto')) {
             $photo = $request->file('foto');
@@ -54,10 +54,9 @@ class ProductController extends Controller
             $photo->move(public_path('storage/product'), $filename);
             $data->foto = $filename;
         }
-
         $data->save();
         Alert::toast('Data berhasil disimpan', 'success');
-        return redirect()->route('product.index');
+        return redirect()->route('product');
     }
 
     /**
@@ -67,16 +66,16 @@ class ProductController extends Controller
     {
         $data = product::findOrFail($id);
 
-        return view('admin.modal.editModal', [
-            'title' => 'Edit data product',
-            'data' => $data,
-        ])->render();
+        return view(
+            'admin.modal.editModal',
+            [
+                'title' => 'Edit data product',
+                'data'  => $data,
+            ]
+        )->render();
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateproductRequest $request, $id)
+    public function update(UpdateproductRequest $request, product $product, $id)
     {
         $data = product::findOrFail($id);
 
@@ -86,22 +85,22 @@ class ProductController extends Controller
             $photo->move(public_path('storage/product'), $filename);
             $data->foto = $filename;
         } else {
-            $filename = $data->foto;
+            $filename = $request->foto;
         }
 
         $field = [
-            'sku' => $request->sku,
-            'nama_product' => $request->nama,
-            'harga' => $request->harga,
-            'quantity' => $request->quantity,
-            'discount' => 10 / 100,
-            'is_active' => 1,
-            'foto' => $filename,
+            'sku'                   => $request->sku,
+            'nama_product'          => $request->nama,
+            'harga'                 => $request->harga,
+            'quantity'              => $request->quantity,
+            'discount'              => 10 / 100,
+            'is_active'             => 1,
+            'foto'                  => $filename,
         ];
 
-        product::where('id', $id)->update($field);
+        $data::where('id',$id)->update($field);
         Alert::toast('Data berhasil diupdate', 'success');
-        return redirect()->route('product.index');
+        return redirect()->route('product');
     }
 
     /**
@@ -116,6 +115,6 @@ class ProductController extends Controller
             'success' => "Data berhasil dihapus"
         ];
 
-        return response()->json($json);
+        echo json_encode($json);
     }
 }
