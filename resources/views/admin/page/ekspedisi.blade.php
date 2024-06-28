@@ -3,11 +3,11 @@
 @section('content')
     <div class="card rounded-full">
         <div class="card-header bg-transparent d-flex justify-content-between">
-            <button class="btn btn-info">
+            <a href="{{ route('addEkspedisi') }}" class="btn btn-info">
                 <i class="fa fa-plus">
                     <span>Tambah</span>
                 </i>
-            </button>
+            </a>
             <input type="text" wire:model="search" class="form-control w-25" placeholder="Search....">
         </div>
         <div class="card-body">
@@ -19,10 +19,16 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php $i = 1; ?>
                     <tr>
-                        <td></td>
-                        <td></td>
+                        <td><?= $i ?></td>
+                        <td>{!! $dataEkspedisi->namaEkspedisi !!}</td>
+                        <td>
+                            <a href="{{ route('editEkspedisi', $dataEkspedisi->id) }}" class="btn btn-success">Edit</a>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"> Delete </button>
+                        </td>
                     </tr>
+                    <?php $i++; ?>
                 </tbody>
             </table>
         </div>
