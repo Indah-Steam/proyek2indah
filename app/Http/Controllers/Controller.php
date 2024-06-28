@@ -7,6 +7,7 @@ use App\Models\product;
 use App\Models\tblCart;
 use App\Models\transaksi;
 use App\Models\User;
+use App\Models\Ekspedisi;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
@@ -214,10 +215,42 @@ class Controller extends BaseController
     }
     public function ekspedisi()
     {
+        $dataEkspedisi = Ekspedisi::select('*')->first();
         return view('admin.page.ekspedisi', [
             'name'      => "Ekspedisi",
             'title'     => 'Ekspedisi',
+            'dataEkspedisi'  => $dataEkspedisi,
         ]);
+    }
+
+    public function addEkspedisi()
+    {
+        return view('admin.page.addEkspedisi', [
+            'name'      => "Ekspedisi",
+            'title'     => 'Ekspedisi',
+        ]);
+    }
+
+    public function saveEkspedisi(Request $request)
+    {
+        $ekspedisi = new Ekspedisi();
+        $ekspedisi->id = auth()->user()->id;
+        $ekspedisi->namaEkspedisi = $request->get('namaEkspedisi');
+        $ekspedisi->save();
+        return redirect()->route('ekspedisi');
+    }
+
+    public function edit($id)
+    {
+        $ekspedisi = Ekspedisi::where('id', $id)->first();
+        // dd($ekspedisi);
+        // $ekspedisi = Ekspedisi::findOrFail($id);
+        // return view('admin.page.EditEkspedisi', [
+        //     'name'      => "Edit Ekspedisi",
+        //     'title'     => 'Edit Ekspedisi',
+        //     'ekspedisi'  => $ekspedisi,
+        // ]);
+        return view('admin.page.editEkspedisi', compact('ekspedisi'));
     }
 
     public function login()
