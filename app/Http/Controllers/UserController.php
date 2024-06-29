@@ -36,18 +36,11 @@ class UserController extends Controller
         $data->email        = $request->email;
         $data->password     = bcrypt($request->password);
         $data->alamat       = $request->alamat;
-        $data->tlp          = $request->tlp;
         $data->tglLahir     = $request->tglLahir;
         $data->is_member    = 0;
         $data->is_admin     = 1;
 
         // dd($request);die;
-        if ($request->hasFile('foto')) {
-            $photo = $request->file('foto');
-            $filename = date('Ymd') . '_' . $photo->getClientOriginalName();
-            $photo->move(public_path('storage/user'), $filename);
-            $data->foto = $filename;
-        }
         $data->save();
         Alert::toast('Data berhasil disimpan', 'success');
         return redirect()->route('userManagement');
@@ -69,24 +62,13 @@ class UserController extends Controller
     {
         $data = User::findOrFail($id);
 
-        if ($request->file('foto')) {
-            $photo = $request->file('foto');
-            $filename = date('Ymd') . '_' . $photo->getClientOriginalName();
-            $photo->move(public_path('storage/user'), $filename);
-            $data->foto = $filename;
-        } else {
-            $filename = $request->foto;
-        }
-
         $field = [
             'nik'                   => $request->nik,
             'name'                  => $request->nama,
             'email'                 => $request->email,
             'password'              => bcrypt($request->password),
             'alamat'                => $request->alamat,
-            'tlp'                   => $request->tlp,
             'tglLahir'              => $request->tglLahir,
-            'foto'                  => $filename,
         ];
 
         $data::where('id', $id)->update($field);
@@ -112,23 +94,12 @@ class UserController extends Controller
         $data->name         = $request->name;
         $data->email        = $request->email;
         $data->password     = bcrypt($request->password);
-        $data->alamat       = $request->alamat . " " . $request->alamat2;
-        $data->tlp          = $request->tlp;
+        $data->alamat       = $request->alamat;
         $data->tglLahir     = $request->date;
         $data->is_member    = 1;
         $data->is_admin     = 1;
 
         // dd($request);die;
-
-        if ($request->hasFile('foto') == "") {
-            $filename = "default.png";
-            $data->foto = $filename;
-        } else {
-            $photo = $request->file('foto');
-            $filename = date('Ymd') . '_' . $photo->getClientOriginalName();
-            $photo->move(public_path('storage/user'), $filename);
-            $data->foto = $filename;
-        }
         $data->save();
         Alert::toast('Data berhasil disimpan', 'success');
         return redirect()->route('home');
