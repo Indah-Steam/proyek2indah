@@ -43,10 +43,9 @@
                             <div class="col-sm-9">
                                 <select name="ekspedisi" class="form-control eksp" id="ekspedisi">
                                     <option value="">-- Pilih Ekspedisi --</option>
-                                    <option value="jnt">J&T Ekspress</option>
-                                    <option value="jne">JNE Ekspress</option>
-                                    <option value="sicepat">Sicepat Ekspress</option>
-                                    <option value="ninja">Ninja Ekspress</option>
+                                    <?php foreach($namaEkspedisi as $ekspedisi): ?>
+                                        <option value="<?php echo strtolower(str_replace(' ', '', $ekspedisi)); ?>"><?php echo $ekspedisi; ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>

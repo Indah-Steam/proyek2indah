@@ -15,20 +15,23 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama ekspedisi</th>
+                        <th>Nama Ekspedisi</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
+                    @foreach($dataEkspedisi as $ekspedisi)
                     <tr>
                         <td><?= $i ?></td>
-                        <td>{!! $dataEkspedisi->namaEkspedisi !!}</td>
+                        <td>{!! $ekspedisi->namaEkspedisi !!}</td>
                         <td>
-                            <a href="{{ route('editEkspedisi', $dataEkspedisi->id) }}" class="btn btn-success">Edit</a>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"> Delete </button>
+                            <a href="{{ route('editEkspedisi', $ekspedisi->id) }}" class="btn btn-success">Edit</a>
+                            <a href="{{ route('deleteEkspedisi', $ekspedisi->id) }}" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                     <?php $i++; ?>
+                    @endforeach
                 </tbody>
             </table>
         </div>
