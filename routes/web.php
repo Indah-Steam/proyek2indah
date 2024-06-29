@@ -61,8 +61,9 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::GET('/admin/ekspedisi/addEkspedisi', [Controller::class, 'addEkspedisi'])->name('addEkspedisi');
     Route::POST('/admin/ekspedisi/saveEkspedisi', [Controller::class, 'saveEkspedisi'])->name('saveEkspedisi');
-    Route::get('/admin/ekspedisi/edit/{id}', [Controller::class, 'edit'])->name('editEkspedisi');
-    Route::PUT('/admin/ekspedisi/update/{id}', [Controller::class, 'updateEkspedisi'])->name('updateEkspedisi');
+    Route::GET('/admin/ekspedisi/edit/{id}', [Controller::class, 'editEkspedisi'])->name('editEkspedisi');
+    Route::POST('/admin/ekspedisi/update/{id}', [Controller::class, 'updateEkspedisi'])->name('updateEkspedisi');
+    Route::GET('/admin/ekspedisi/deleteData/{id}', [Controller::class, 'destroyEkspedisi'])->name('deleteEkspedisi');
 
     Route::GET('/admin/transaksi', [TransaksiAdminController::class, 'index'])->name('transaksi.admin');
 

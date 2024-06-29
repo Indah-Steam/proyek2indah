@@ -72,13 +72,15 @@ class Controller extends BaseController
             ->count('id_barang');
         $qtyBarang = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])
             ->sum('qty');
+        $namaEkspedisi = Ekspedisi::pluck('namaEkspedisi');
         return view('pelanggan.page.checkOut', [
             'title'     => 'Check Out',
             'count'     => $countKeranjang,
             'detailBelanja' => $detailBelanja,
             'jumlahbarang' => $jumlahBarang,
             'qtyOrder'  => $qtyBarang,
-            'codeTransaksi' => $codeTransaksi
+            'codeTransaksi' => $codeTransaksi,
+            'namaEkspedisi' => $namaEkspedisi
         ]);
     }
     public function prosesCheckout(Request $request, $id)
@@ -215,7 +217,7 @@ class Controller extends BaseController
     }
     public function ekspedisi()
     {
-        $dataEkspedisi = Ekspedisi::select('*')->first();
+        $dataEkspedisi = Ekspedisi::select('*')->get();
         return view('admin.page.ekspedisi', [
             'name'      => "Ekspedisi",
             'title'     => 'Ekspedisi',
@@ -234,23 +236,34 @@ class Controller extends BaseController
     public function saveEkspedisi(Request $request)
     {
         $ekspedisi = new Ekspedisi();
-        $ekspedisi->id = auth()->user()->id;
         $ekspedisi->namaEkspedisi = $request->get('namaEkspedisi');
         $ekspedisi->save();
         return redirect()->route('ekspedisi');
     }
 
-    public function edit($id)
+    public function editEkspedisi($id)
     {
-        $ekspedisi = Ekspedisi::where('id', $id)->first();
-        // dd($ekspedisi);
-        // $ekspedisi = Ekspedisi::findOrFail($id);
-        // return view('admin.page.EditEkspedisi', [
-        //     'name'      => "Edit Ekspedisi",
-        //     'title'     => 'Edit Ekspedisi',
-        //     'ekspedisi'  => $ekspedisi,
-        // ]);
-        return view('admin.page.editEkspedisi', compact('ekspedisi'));
+        $cariEkspedisi = Ekspedisi::where('id', $id)->first();
+        return view('admin.page.editEkspedisi', [
+            'name'      => "Edit Ekspedisi",
+            'title'     => 'Edit Ekspedisi',
+            'cariEkspedisi'  => $cariEkspedisi,
+        ]);
+    }
+
+    public function updateEkspedisi(Request $request, $id)
+    {
+        $updateEkspedisi = Ekspedisi::where('id', $id)->first();
+        $updateEkspedisi->namaEkspedisi = $request->get('namaEkspedisi');
+        $updateEkspedisi->update();
+        return redirect()->route('ekspedisi');
+    }
+
+    public function destroyEkspedisi($id)
+    {
+        $deleteEkspedisi = Ekspedisi::find($id);
+        $deleteEkspedisi->delete();
+        return redirect()->route('ekspedisi');
     }
 
     public function login()
