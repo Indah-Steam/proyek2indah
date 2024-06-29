@@ -89,8 +89,6 @@ class Controller extends BaseController
         // $findId = tblCart::where('id',$id)->get();
         $code = transaksi::count();
         $codeTransaksi = date('Ymd') . $code + 1;
-        // dd($data);die;
-
         // simpan detail barang
         $detailTransaksi = new modelDetailTransaksi();
         $fieldDetail = [
@@ -117,15 +115,12 @@ class Controller extends BaseController
     {
         $data = $request->all();
         $dbTransaksi = new transaksi();
-        // dd($data);die;
-
         $dbTransaksi->code_transaksi    = $data['code'];
         $dbTransaksi->total_qty         = $data['totalQty'];
         $dbTransaksi->total_harga       = $data['dibayarkan'];
         $dbTransaksi->nama_customer     = $data['namaPenerima'];
         $dbTransaksi->alamat            = $data['alamatPenerima'];
         $dbTransaksi->no_tlp            = $data['tlp'];
-        $dbTransaksi->ekspedisi         = $data['ekspedisi'];
 
         $dbTransaksi->save();
 

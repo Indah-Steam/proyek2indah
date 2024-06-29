@@ -8,7 +8,6 @@
                     <span>Tambah</span>
                 </i>
             </a>
-            <input type="text" wire:model="search" class="form-control w-25" placeholder="Search....">
         </div>
         <div class="card-body">
             <table class="table table-responsive table-striped">
