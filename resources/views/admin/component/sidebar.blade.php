@@ -28,14 +28,14 @@
                 </a>
             </li>
             </li>
-            {{-- <li class="navbar-item rounded {{ Request::path() === 'admin/bayar' ? 'bg-warning' : '' }} ">
-                <a href="product">
+            <li class="navbar-item rounded {{ Request::path() === 'admin/pembayaran' ? 'bg-warning' : '' }} ">
+                <a href="pembayaran">
                     <div class="d-flex gap-3">
-                        <span class="material-icons">inventory</span>
-                        <p class="m-0 p-0">Product</p>
+                        <span class="material-icons">account_balance_wallet</span>
+                        <p class="m-0 p-0">Metode Pembayaran</p>
                     </div>
                 </a>
-            </li> --}}
+            </li>
             <li class="navbar-item rounded {{ Request::path() === 'admin/ekspedisi' ? 'bg-warning' : '' }} ">
                 <a href="ekspedisi">
                     <div class="d-flex gap-3">

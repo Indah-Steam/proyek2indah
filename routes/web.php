@@ -20,14 +20,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [TransaksiController::class, 'index'])->name('home');
+Route::get('/shop', [Controller::class, 'shop'])->name('shop');
+Route::get('/transaksi', [Controller::class, 'transaksi'])->name('transaksi');
+Route::get('/tentang', [Controller::class, 'tentang'])->name('tentang');
+
+
+
+Route::get('/admin/pembayaran', [Controller::class, 'pembayaran'])->name('pembayaran');
+Route::GET('/admin/pembayaran/addPembayaran', [Controller::class, 'addPembayaran'])->name('addPembayaran');
+Route::POST('/admin/pembayaran/savePembayaran', [Controller::class, 'savePembayaran'])->name('savePembayaran');
+Route::GET('/admin/pembayaran/edit/{id}', [Controller::class, 'editPembayaran'])->name('editPembayaran');
+Route::POST('/admin/pembayaran/update/{id}', [Controller::class, 'updatePembayaran'])->name('updatePembayaran');
+Route::GET('/admin/pembayaran/deleteData/{id}', [Controller::class, 'destroyPembayaran'])->name('deletePembayaran');
+
+
+
 Route::POST('/addTocart', [TransaksiController::class, 'addTocart'])->name('addTocart');
 Route::POST('/storePelanggan', [UserController::class, 'storePelanggan'])->name('storePelanggan');
 Route::POST('/login_pelanggan', [UserController::class, 'loginProses'])->name('loginproses.pelanggan');
 Route::GET('/logout_pelanggan', [UserController::class, 'logout'])->name('logout.pelanggan');
 
-Route::get('/shop', [Controller::class, 'shop'])->name('shop');
-Route::get('/transaksi', [Controller::class, 'transaksi'])->name('transaksi');
-Route::get('/tentang', [Controller::class, 'tentang'])->name('tentang');
+
 
 Route::get('/checkout', [Controller::class, 'checkout'])->name('checkout');
 Route::POST('/checkout/proses/{id}', [Controller::class, 'prosesCheckout'])->name('checkout.product');

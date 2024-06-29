@@ -14,7 +14,14 @@
                         href="/">Shop</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::path() == 'tentang' ? 'active' : '' }}" href="/tentang">Tentang Kami</a>
+                    <div class="notif">
+                        <a href="/transaksi" class="fs-5 nav-link {{ Request::path() == 'transaksi' ? 'active' : '' }}">
+                            <i class="fa fa-bag-shopping"></i>
+                        </a>
+                        @if ($count)
+                            <div class="circle">{{ $count }}</div>
+                        @endif
+                    </div>
                 </li>
                 @auth
                     <div class="select" tabindex="0" role="button">
@@ -41,16 +48,6 @@
                             Login | Register</button>
                     </li>
                 @endauth
-                <li class="nav-item">
-                    <div class="notif">
-                        <a href="/transaksi" class="fs-5 nav-link {{ Request::path() == 'transaksi' ? 'active' : '' }}">
-                            <i class="fa fa-bag-shopping"></i>
-                        </a>
-                        @if ($count)
-                            <div class="circle">{{ $count }}</div>
-                        @endif
-                    </div>
-                </li>
             </ul>
         </div>
     </div>

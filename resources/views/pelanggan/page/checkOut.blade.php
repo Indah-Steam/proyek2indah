@@ -30,21 +30,23 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="tlp" class="col-form-label col-sm-3">Metode Pembayaran</label>
-                            <div class="col-sm-9">
-                                    <select name="metode" class="form-control eksp" id="metode">
-                                        <option value="">-- Pilih Metode Pembayaran --</option>
-                                        {{-- <option value="metode">{{ $data }}</option> --}}
-                                    </select>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
                             <label for="ekspedisi" class="col-form-label col-sm-3">Ekspedisi</label>
                             <div class="col-sm-9">
                                 <select name="ekspedisi" class="form-control eksp" id="ekspedisi">
                                     <option value="">-- Pilih Ekspedisi --</option>
                                     <?php foreach($namaEkspedisi as $ekspedisi): ?>
                                         <option value="<?php echo strtolower(str_replace(' ', '', $ekspedisi)); ?>"><?php echo $ekspedisi; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="pembayaran" class="col-form-label col-sm-3">Metode Pembayaran</label>
+                            <div class="col-sm-9">
+                                <select name="pembayaran" class="form-control" id="pembayaran">
+                                    <option value="">-- Pilih Metode Pembayaran --</option>
+                                    <?php foreach($namaPembayaran as $pembayaran): ?>
+                                        <option value="<?php echo strtolower(str_replace(' ', '', $pembayaran)); ?>"><?php echo $pembayaran; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>

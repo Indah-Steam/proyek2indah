@@ -8,6 +8,7 @@ use App\Models\tblCart;
 use App\Models\transaksi;
 use App\Models\User;
 use App\Models\Ekspedisi;
+use App\Models\pembayaran;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
@@ -32,7 +33,6 @@ class Controller extends BaseController
             $data = product::paginate(5);
         }
         $countKeranjang = tblCart::where(['idUser' => 'guest123', 'status' => 0])->count();
-
 
         return view('pelanggan.page.shop', [
             'title'     => 'Shop',
@@ -73,6 +73,7 @@ class Controller extends BaseController
         $qtyBarang = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])
             ->sum('qty');
         $namaEkspedisi = Ekspedisi::pluck('namaEkspedisi');
+        $namaPembayaran = pembayaran::pluck('namaPembayaran');
         return view('pelanggan.page.checkOut', [
             'title'     => 'Check Out',
             'count'     => $countKeranjang,
@@ -80,7 +81,8 @@ class Controller extends BaseController
             'jumlahbarang' => $jumlahBarang,
             'qtyOrder'  => $qtyBarang,
             'codeTransaksi' => $codeTransaksi,
-            'namaEkspedisi' => $namaEkspedisi
+            'namaEkspedisi' => $namaEkspedisi,
+            'namaPembayaran' => $namaPembayaran
         ]);
     }
     public function prosesCheckout(Request $request, $id)
@@ -259,6 +261,58 @@ class Controller extends BaseController
         $deleteEkspedisi = Ekspedisi::find($id);
         $deleteEkspedisi->delete();
         return redirect()->route('ekspedisi');
+    }
+
+    // pembayaran
+    public function pembayaran()
+    {
+        $dataPembayaran = pembayaran::select('*')->get();
+        return view('admin.page.pembayaran', [
+            'name'      => "Pembayaran",
+            'title'     => 'Pembayaran',
+            'dataPembayaran'  => $dataPembayaran,
+        ]);
+    }
+
+    public function addPembayaran()
+    {
+        return view('admin.page.addPembayaran', [
+            'name'      => "Pembayaran",
+            'title'     => 'Pembayaran',
+        ]);
+    }
+
+    public function savePembayaran(Request $request)
+    {
+        $pembayaran = new pembayaran();
+        $pembayaran->namaPembayaran = $request->get('namaPembayaran');
+        $pembayaran->save();
+        return redirect()->route('pembayaran');
+    }
+
+    public function editPembayaran($id)
+    {
+        $cariPembayaran = pembayaran::where('id', $id)->first();
+        return view('admin.page.editPembayaran', [
+            'name'      => "Edit Pembayaran",
+            'title'     => 'Edit Pembayaran',
+            'cariPembayaran'  => $cariPembayaran,
+        ]);
+    }
+
+    public function updatePembayaran(Request $request, $id)
+    {
+        $updatePembayaran = Pembayaran::where('id', $id)->first();
+        $updatePembayaran->namaPembayaran = $request->get('namaPembayaran');
+        $updatePembayaran->update();
+        return redirect()->route('pembayaran');
+    }
+
+    public function destroyPembayaran($id)
+    {
+        $deletePembayaran = pembayaran::find($id);
+        $deletePembayaran->delete();
+        return redirect()->route('pembayaran');
     }
 
     public function login()
