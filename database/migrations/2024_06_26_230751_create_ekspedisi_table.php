@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('namaEkspedisi');
             $table->timestamps();
-            
+
+            $table->foreign('id')->references('id')->on('ekspedisi');
         });
     }
 

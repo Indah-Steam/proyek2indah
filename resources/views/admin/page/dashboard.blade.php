@@ -25,23 +25,5 @@
                 <span class="fs-2 p-0 m-0">{{ $sumStock }}</span>
             </div>
         </div>
-        <div class="card" style="width: 300px; height: 200px;">
-            <div class="card-body">
-                <div class="d-flex gap-2 align-items-center justify-start">
-                    <span class="material-icons p-1 rounded"
-                        style="font-size:22px; color:#088395; background-color:#7ED7C1">
-                        shopping_cart
-                    </span>
-                    <h5 class="p-0 m-0" style="color:green">Transaksi</h5>
-                </div>
-                <span class="fs-2 p-0 m-0">{{ $dataTransaksi }}</span>
-            </div>
-        </div>
-        <div class="card" style="width: 300px; height: 200px;">
-            <div class="card-body">
-                <div class="d-flex gap-2 align-items-center justify-start">
-                </div>
-            </div>
-        </div>
     </div>
 @endsection
