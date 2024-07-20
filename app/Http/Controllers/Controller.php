@@ -45,22 +45,17 @@ class Controller extends BaseController
         $db = tblCart::with('product')->where(['idUser' => 'guest123', 'status' => 0])->get();
         $countKeranjang = tblCart::where(['idUser' => 'guest123', 'status' => 0])->count();
 
-        // dd($db->product->nama_product);die;
+
+
         return view('pelanggan.page.transaksi', [
-            'title'     => 'Transaksi',
+            'title'     => 'keranjang',
             'count'     => $countKeranjang,
             'data'      => $db
         ]);
     }
-    public function tentang()
-    {
-        $countKeranjang = tblCart::where(['idUser' => 'guest123', 'status' => 0])->count();
 
-        return view('pelanggan.page.tentang', [
-            'title'     => 'Tentang Kami',
-            'count'     => $countKeranjang,
-        ]);
-    }
+
+    // Check out
     public function checkout()
     {
         $countKeranjang = tblCart::where(['idUser' => 'guest123', 'status' => 0])->count();
@@ -88,10 +83,10 @@ class Controller extends BaseController
     public function prosesCheckout(Request $request, $id)
     {
         $data = $request->all();
-        // $findId = tblCart::where('id',$id)->get();
         $code = transaksi::count();
         $codeTransaksi = date('Ymd') . $code + 1;
-        // simpan detail barang
+
+
         $detailTransaksi = new modelDetailTransaksi();
         $fieldDetail = [
             'id_transaksi' => $codeTransaksi,
@@ -101,7 +96,8 @@ class Controller extends BaseController
         ];
         $detailTransaksi::create($fieldDetail);
 
-        // update cart
+
+
         $fieldCart = [
             'qty'          => $data['qty'],
             'price'        => $data['total'],
@@ -142,76 +138,11 @@ class Controller extends BaseController
         return redirect()->route('home');
     }
 
-    public function keranjang()
-    {
-        $countKeranjang = tblCart::where(['idUser' => 'guest123', 'status' => 0])->count();
-        $all_trx = transaksi::all();
-        return view('pelanggan.page.keranjang', [
-            'name' => 'Payment',
-            'title' => 'Payment Process',
-            'count' => $countKeranjang,
-            'data'  => $all_trx
-        ]);
-    }
+    //
 
-    public function bayar($id)
-    {
-        $find_data = transaksi::find($id);
-        $countKeranjang = tblCart::where(['idUser' => 'guest123', 'status' => 0])->count();
-        \Midtrans\Config::$serverKey = config('midtrans.server_key');
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        \Midtrans\Config::$isProduction = false;
-        // Set sanitization on (default)
-        \Midtrans\Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
-        \Midtrans\Config::$is3ds = true;
 
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => $find_data->code_transaksi,
-                'gross_amount' => $find_data->total_harga,
-            ),
-            'customer_details' => array(
-                'first_name' => 'Mr',
-                'last_name' => $find_data->nama_customer,
-                // 'email' => 'budi.pra@example.com',
-                'phone' => $find_data->no_tlp,
-            ),
-        );
 
-        $snapToken = \Midtrans\Snap::getSnapToken($params);
-        // dd($snapToken);die;
-        return view('pelanggan.page.detailTransaksi', [
-            'name' => 'Detail Transaksi',
-            'title' => 'Detail Transaksi',
-            'count' => $countKeranjang,
-            'token' => $snapToken,
-            'data' => $find_data,
-        ]);
-    }
 
-    public function admin()
-    {
-        $dataProduct = product::count();
-        $dataStock = product::sum('quantity');
-        $dataTransaksi = transaksi::count();
-        $dataPenghasilan = transaksi::sum('total_harga');
-        return view('admin.page.dashboard', [
-            'name'          => "Dashboard",
-            'title'         => 'Admin Dashboard',
-            'totalProduct'  => $dataProduct,
-            'sumStock'      => $dataStock,
-            'dataTransaksi' => $dataTransaksi,
-        ]);
-    }
-
-    public function userManagement()
-    {
-        return view('admin.page.user', [
-            'name'      => "User Management",
-            'title'     => 'Admin User Management',
-        ]);
-    }
     public function ekspedisi()
     {
         $dataEkspedisi = Ekspedisi::select('*')->get();
@@ -221,6 +152,7 @@ class Controller extends BaseController
             'dataEkspedisi'  => $dataEkspedisi,
         ]);
     }
+
 
     public function addEkspedisi()
     {
@@ -314,6 +246,31 @@ class Controller extends BaseController
         $deletePembayaran->delete();
         return redirect()->route('pembayaran');
     }
+
+
+
+
+
+
+
+
+
+
+    public function admin()
+    {
+        $dataProduct = product::count();
+        $dataStock = product::sum('quantity');
+        $dataTransaksi = transaksi::count();
+        $dataPenghasilan = transaksi::sum('total_harga');
+        return view('admin.page.dashboard', [
+            'name'          => "Dashboard",
+            'title'         => 'Admin Dashboard',
+            'totalProduct'  => $dataProduct,
+            'sumStock'      => $dataStock,
+            'dataTransaksi' => $dataTransaksi,
+        ]);
+    }
+
 
     public function login()
     {

@@ -48,13 +48,11 @@ class UserController extends Controller
     public function show($id)
     {
         $data = User::findOrFail($id);
-        // $hasValue = Hash::make($data->password);
         return view(
             'admin.modal.editUser',
             [
                 'title' => 'Edit data User',
                 'data'  => $data,
-                // 'pass'  => (string) $hasValue,
             ]
         )->render();
     }
@@ -89,7 +87,7 @@ class UserController extends Controller
     public function storePelanggan(UserRequest $request)
     {
         $data = new User;
-        $nik  = "Member" . rand(000, 999);
+        $nik  = "User" . rand(000, 999);
         $data->nik          = $nik;
         $data->name         = $request->name;
         $data->email        = $request->email;

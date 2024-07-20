@@ -11,14 +11,6 @@
                     </div>
                 </a>
             </li>
-            <li class="navbar-item rounded {{ Request::path() === 'admin/user_management' ? 'bg-warning' : '' }} ">
-                <a href="user_management">
-                    <div class="d-flex gap-3">
-                        <span class="material-icons">people_alt</span>
-                        <p class="m-0 p-0">User Management</p>
-                    </div>
-                </a>
-            </li>
             <li class="navbar-item rounded {{ Request::path() === 'admin/product' ? 'bg-warning' : '' }} ">
                 <a href="product">
                     <div class="d-flex gap-3">

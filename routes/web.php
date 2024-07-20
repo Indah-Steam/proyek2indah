@@ -22,9 +22,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [TransaksiController::class, 'index'])->name('home');
 Route::get('/shop', [Controller::class, 'shop'])->name('shop');
 Route::get('/transaksi', [Controller::class, 'transaksi'])->name('transaksi');
-Route::get('/tentang', [Controller::class, 'tentang'])->name('tentang');
-
-
 
 Route::get('/admin/pembayaran', [Controller::class, 'pembayaran'])->name('pembayaran');
 Route::GET('/admin/pembayaran/addPembayaran', [Controller::class, 'addPembayaran'])->name('addPembayaran');
@@ -33,51 +30,50 @@ Route::GET('/admin/pembayaran/edit/{id}', [Controller::class, 'editPembayaran'])
 Route::POST('/admin/pembayaran/update/{id}', [Controller::class, 'updatePembayaran'])->name('updatePembayaran');
 Route::GET('/admin/pembayaran/deleteData/{id}', [Controller::class, 'destroyPembayaran'])->name('deletePembayaran');
 
-
-
 Route::POST('/addTocart', [TransaksiController::class, 'addTocart'])->name('addTocart');
 Route::POST('/storePelanggan', [UserController::class, 'storePelanggan'])->name('storePelanggan');
 Route::POST('/login_pelanggan', [UserController::class, 'loginProses'])->name('loginproses.pelanggan');
 Route::GET('/logout_pelanggan', [UserController::class, 'logout'])->name('logout.pelanggan');
 
 
-
-Route::get('/checkout', [Controller::class, 'checkout'])->name('checkout');
 Route::POST('/checkout/proses/{id}', [Controller::class, 'prosesCheckout'])->name('checkout.product');
+Route::get('/checkout', [Controller::class, 'checkout'])->name('checkout');
 Route::POST('/checkout/prosesPembayaran', [Controller::class, 'prosesPembayaran'])->name('checkout.bayar');
-Route::get('/checkOut', [Controller::class, 'keranjang'])->name('keranjang');
-Route::get('/checkOut/{id}', [Controller::class, 'bayar'])->name('keranjang.bayar');
+
 
 
 Route::get('/admin', [Controller::class, 'login'])->name('login');
 Route::POST('/admin/loginProses', [Controller::class, 'loginProses'])->name('loginProses');
 
 
-Route::group(['middleware' => 'admin'], function () {
-    Route::get('/admin/dashboard', [Controller::class, 'admin'])->name('admin');
-    Route::get('/admin/product', [ProductController::class, 'index'])->name('product');
-    Route::get('/admin/logout', [Controller::class, 'logout'])->name('logout');
-    Route::get('/admin/ekspedisi', [Controller::class, 'ekspedisi'])->name('ekspedisi');
-    Route::get('/admin/addModal', [ProductController::class, 'addModal'])->name('addModal');
 
-    Route::GET('/admin/user_management', [UserController::class, 'index'])->name('userManagement');
-    Route::GET('/admin/user_management/addModalUser', [UserController::class, 'addModalUser'])->name('addModalUser');
-    Route::POST('/admin/user_management/addData', [UserController::class, 'store'])->name('addDataUser');
-    Route::get('/admin/user_management/editUser/{id}', [UserController::class, 'show'])->name('showDataUser');
-    Route::PUT('/admin/user_management/updateDataUser/{id}', [UserController::class, 'update'])->name('updateDataUSer');
-    Route::DELETE('/admin/user_management/deleteUSer/{id}', [UserController::class, 'destroy'])->name('destroyDataUser');
+
+
+
+
+
+Route::get('/admin/dashboard', [Controller::class, 'admin'])->name('admin');
+Route::get('/admin/product', [ProductController::class, 'index'])->name('product');
+Route::get('/admin/logout', [Controller::class, 'logout'])->name('logout');
+Route::get('/admin/addModal', [ProductController::class, 'addModal'])->name('addModal');
+
+Route::GET('/admin/user_management', [UserController::class, 'index'])->name('userManagement');
+Route::GET('/admin/user_management/addModalUser', [UserController::class, 'addModalUser'])->name('addModalUser');
+Route::POST('/admin/user_management/addData', [UserController::class, 'store'])->name('addDataUser');
+Route::get('/admin/user_management/editUser/{id}', [UserController::class, 'show'])->name('showDataUser');
+Route::PUT('/admin/user_management/updateDataUser/{id}', [UserController::class, 'update'])->name('updateDataUSer');
+Route::DELETE('/admin/user_management/deleteUSer/{id}', [UserController::class, 'destroy'])->name('destroyDataUser');
 
     Route::POST('/admin/addData', [ProductController::class, 'store'])->name('addData');
     Route::GET('/admin/editModal/{id}', [ProductController::class, 'show'])->name('editModal');
     Route::PUT('/admin/updateData/{id}', [ProductController::class, 'update'])->name('updateData');
     Route::DELETE('/admin/deleteData/{id}', [ProductController::class, 'destroy'])->name('deleteData');
 
+    Route::get('/admin/ekspedisi', [Controller::class, 'ekspedisi'])->name('ekspedisi');
     Route::GET('/admin/ekspedisi/addEkspedisi', [Controller::class, 'addEkspedisi'])->name('addEkspedisi');
     Route::POST('/admin/ekspedisi/saveEkspedisi', [Controller::class, 'saveEkspedisi'])->name('saveEkspedisi');
     Route::GET('/admin/ekspedisi/edit/{id}', [Controller::class, 'editEkspedisi'])->name('editEkspedisi');
     Route::POST('/admin/ekspedisi/update/{id}', [Controller::class, 'updateEkspedisi'])->name('updateEkspedisi');
     Route::GET('/admin/ekspedisi/deleteData/{id}', [Controller::class, 'destroyEkspedisi'])->name('deleteEkspedisi');
 
-    Route::GET('/admin/transaksi', [TransaksiAdminController::class, 'index'])->name('transaksi.admin');
-
-});
+;

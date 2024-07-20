@@ -71,7 +71,6 @@ $(document).ready(function () {
             console.log(subtotal2);
             console.log(ongkir);
             card.find("#dibayarkan").val(subtotal2);
-            // card.find('.ppn').val(ppn);
         });
     });
 });

@@ -70,19 +70,6 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="discount" class="col-form-label col-sm-6">Discount</label>
-                            <div class="col-sm-6">
-                                @if (Auth::user())
-                                    <input type="number" class="form-control discount" id="discount" name="discount"
-                                        value="0">
-                                @else
-                                    <input type="number" class="form-control discount" id="discount" name="discount"
-                                        value="0">
-                                @endif
-
-                            </div>
-                        </div>
-                        <div class="row mb-3">
                             <label for="PPn" class="col-form-label col-sm-6">PPn</label>
                             <div class="col-sm-6">
                                 <input type="text" class="form-control ppn" id="PPn" name="PPn" value="0">
@@ -120,7 +107,7 @@
 
                         <button type="submit" class="btn btn-success w-100">
                             <i class="fas fa-print"></i>
-                            print struck
+                            Belanja
                         </button>
                     </div>
                 </div>

@@ -59,9 +59,8 @@ class ProductController extends Controller
         return redirect()->route('product');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
+
     public function show($id)
     {
         $data = product::findOrFail($id);
@@ -103,9 +102,8 @@ class ProductController extends Controller
         return redirect()->route('product');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
+
     public function destroy($id)
     {
         $product = product::findOrFail($id);
