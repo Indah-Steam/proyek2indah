@@ -60,38 +60,54 @@ class Controller extends BaseController
     {
         $countKeranjang = tblCart::where(['idUser' => 'guest123', 'status' => 0])->count();
         $code = transaksi::count();
-        $codeTransaksi = date('Ymd') . $code + 1;
+        $codeTransaksi = date('Ymd') . ($code + 1);
+    
+        // Hitung detail belanja
         $detailBelanja = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])
             ->sum('price');
         $jumlahBarang = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])
             ->count('id_barang');
         $qtyBarang = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])
             ->sum('qty');
+    
+        // Hitung total PPN dan Ongkir
+        $ppn = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])
+            ->sum('ppn');
+        $ongkir = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])
+            ->sum('ongkir');
+    
+        // Ambil nama ekspedisi dan pembayaran
         $namaEkspedisi = Ekspedisi::pluck('namaEkspedisi');
         $namaPembayaran = pembayaran::pluck('namaPembayaran');
+    
         return view('pelanggan.page.checkOut', [
-            'title'     => 'Check Out',
-            'count'     => $countKeranjang,
+            'title'         => 'Check Out',
+            'count'         => $countKeranjang,
             'detailBelanja' => $detailBelanja,
-            'jumlahbarang' => $jumlahBarang,
-            'qtyOrder'  => $qtyBarang,
+            'jumlahbarang'  => $jumlahBarang,
+            'qtyOrder'      => $qtyBarang,
+            'ppn'           => $ppn,
+            'ongkir'        => $ongkir,
             'codeTransaksi' => $codeTransaksi,
             'namaEkspedisi' => $namaEkspedisi,
-            'namaPembayaran' => $namaPembayaran
+            'namaPembayaran'=> $namaPembayaran,
         ]);
     }
+    
     public function prosesCheckout(Request $request, $id)
     {
         $data = $request->all();
         $code = transaksi::count();
         $codeTransaksi = date('Ymd') . $code + 1;
-
+        $product = Product::find($data['idBarang']);
 
         $detailTransaksi = new modelDetailTransaksi();
         $fieldDetail = [
             'id_transaksi' => $codeTransaksi,
             'id_barang'    => $data['idBarang'],
             'qty'          => $data['qty'],
+            'ppn'          => $product->ppn,
+            'ongkir'       => $product->ongkir,
             'price'        => $data['total']
         ];
         $detailTransaksi::create($fieldDetail);

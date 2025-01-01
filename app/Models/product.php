@@ -17,6 +17,8 @@ class product extends Model
         'kategory',
         'harga',
         'discount',
+        'ppn',
+        'ongkir',
         'quantity',
         'quantity_out',
         'foto',

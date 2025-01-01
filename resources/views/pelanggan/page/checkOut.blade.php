@@ -70,16 +70,17 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="PPn" class="col-form-label col-sm-6">PPn</label>
+                            <label for="ppn" class="col-form-label col-sm-6">PPN</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control ppn" id="PPn" name="PPn" value="0">
+                                <input type="number" class="form-control ppn" id="ppn"
+                                    name="ppn" value="{{ $ppn }}" readonly>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="ongkir" class="col-form-label col-sm-6">Ongkir</label>
                             <div class="col-sm-6">
                                 <input type="number" class="form-control ongkir" id="ongkir" name="ongkir"
-                                    value="0">
+                                value="{{ $ongkir }}" readonly>
                             </div>
                         </div>
                         <hr>
