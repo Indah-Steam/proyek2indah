@@ -94,8 +94,7 @@ class UserController extends Controller
         $data->password     = bcrypt($request->password);
         $data->alamat       = $request->alamat;
         $data->tglLahir     = $request->date;
-        $data->is_member    = 1;
-        $data->is_admin     = 1;
+        $data->role    = "member";
 
         // dd($request);die;
         $data->save();
@@ -103,28 +102,47 @@ class UserController extends Controller
         return redirect()->route('home');
     }
     public function loginProses(Request $request)
-    {
-        $dataLogin = [
-            'email' => $request->email,
-            'password'  => $request->password,
-        ];
+{
+    $dataLogin = [
+        'email' => $request->email,
+        'password' => $request->password
+    ];
 
-        $user = new User;
-        $proses = $user::where('email', $request->email)->first();
+    $user = User::where('email', $request->email)->first();
 
-        if ($proses->is_active === 0) {
-            Alert::toast('Kamu belum register', 'error');
-            return back();
-        }
-        if (Auth::attempt($dataLogin)) {
-            Alert::toast('Kamu berhasil login', 'success');
-            $request->session()->regenerate();
+    if (!$user) {
+        Alert::toast('Email tidak ditemukan', 'error');
+        return back();
+    }
+
+    if ($user->is_active === 0) {
+        Alert::toast('Akun kamu belum aktif', 'error');
+        return back();
+    }
+
+    if (Auth::attempt($dataLogin)) {
+        $request->session()->regenerate();
+
+        // Mendapatkan role pengguna yang berhasil login
+        $role = $user->role;
+
+        // Menampilkan role ke output dan mengarahkan berdasarkan role
+        Alert::toast('Kamu berhasil login sebagai ' . $role, 'success');
+
+        if ($role === 'admin') {
+            return redirect()->intended('/admin/dashboard');
+        } elseif ($role === 'member') {
             return redirect()->intended('/');
         } else {
-            Alert::toast('Email dan Password salah', 'error');
+            Alert::toast('Role tidak dikenali', 'error');
             return back();
         }
+    } else {
+        Alert::toast('Email dan Password salah', 'error');
+        return back();
     }
+}
+
 
     public function logout()
     {

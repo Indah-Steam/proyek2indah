@@ -290,7 +290,7 @@ class Controller extends BaseController
         $user = new User;
         $proses = $user::where('email', $request->email)->first();
 
-        if ($proses->is_admin == 0) {
+        if ($proses->role !== "admin") {
             Session::flash('error', 'Kamu bukan admin');
             return back();
         } else {
