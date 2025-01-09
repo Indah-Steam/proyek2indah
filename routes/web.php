@@ -63,3 +63,6 @@ Route::post('/admin/ekspedisi/saveEkspedisi', [Controller::class, 'saveEkspedisi
 Route::get('/admin/ekspedisi/edit/{id}', [Controller::class, 'editEkspedisi'])->name('editEkspedisi');
 Route::post('/admin/ekspedisi/update/{id}', [Controller::class, 'updateEkspedisi'])->name('updateEkspedisi');
 Route::get('/admin/ekspedisi/deleteData/{id}', [Controller::class, 'destroyEkspedisi'])->name('deleteEkspedisi');
+
+Route::get('/add-modal', [ProductController::class, 'addModal'])->name('addModal');
+Route::get('/edit-modal/{id}', [ProductController::class, 'editModal'])->name('editModal');

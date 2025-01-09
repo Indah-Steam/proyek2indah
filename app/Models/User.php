@@ -23,6 +23,8 @@ class User extends Authenticatable
         'password',
         'alamat',
         'tglLahir',
+        'ppn',
+        'ongkir',
         'is_active',
         'role',
     ];

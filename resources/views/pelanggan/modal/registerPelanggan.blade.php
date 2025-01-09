@@ -49,6 +49,15 @@
                                 placeholder="Input phone number">
                         </div>
                     </div>
+                    <div class="mb-3 row">
+                        <label for="no_tlp" class="col-sm-3 col-form-label">Phone Number<span
+                                style="color:red;">*</span>
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="no_tlp" class="form-control" id="no_tlp" name="no_tlp"
+                                placeholder="Input phone number">
+                        </div>
+                    </div>
 
                     <button type="submit" class="btn btn-success col-sm-12">Register</button>
                     </p>

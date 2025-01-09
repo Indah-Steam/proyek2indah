@@ -72,7 +72,7 @@
     <script>
         $('#addData').click(function() {
             $.ajax({
-                url: '{{ route('addModal') }}',
+                url: "{{ route('addModal') }}",
                 success: function(response) {
                     $('.tampilData').html(response).show();
                     $('#addModal').modal("show");

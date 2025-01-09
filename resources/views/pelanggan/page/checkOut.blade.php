@@ -23,9 +23,9 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="tlp" class="col-form-label col-sm-3">No.tlp Penerima</label>
+                            <label for="no_tlp" class="col-form-label col-sm-3">No.tlp Penerima</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="tlp" name="tlp"
+                                <input type="text" class="form-control" id="no_tlp" name="no_tlp"
                                     placeholder="Masukan No tlp Penerima" required>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
                                 <select name="pembayaran" class="form-control" id="pembayaran">
                                     <option value="">-- Pilih Metode Pembayaran --</option>
                                     <?php foreach($namaPembayaran as $pembayaran): ?>
-                                        <option value="<?php echo strtolower(str_replace(' ', '', $pembayaran)); ?>"><?php echo $pembayaran; ?></option>
+                                        <option value="<?php echo strtolower(str_replace(' ', '', $pembayaran,$no_tlp)); ?>"><?php echo $pembayaran; ?> </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>

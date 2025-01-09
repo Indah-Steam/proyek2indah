@@ -20,8 +20,11 @@ return new class extends Migration
             $table->string('password');
             $table->integer('is_admin')->default(1);
             $table->boolean('is_member')->default(1);
+            $table->integer('no_tlp');
             $table->string('alamat');
             $table->date('tglLahir');
+            $table->string('ppn');
+            $table->string('ongkir');
             $table->rememberToken();
             $table->timestamps();
         });
