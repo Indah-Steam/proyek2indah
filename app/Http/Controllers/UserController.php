@@ -38,8 +38,6 @@ class UserController extends Controller
         $data->alamat       = $request->alamat;
         $data->tglLahir     = $request->tglLahir;
         $data->no_tlp       = $request->no_tlp;
-        $data->ppn          = $request->ppn;
-        $data->ongkir       = $request->ongkir;
         $data->is_member    = 0;
         $data->is_admin     = 1;
 
@@ -70,8 +68,6 @@ class UserController extends Controller
             'password'              => bcrypt($request->password),
             'alamat'                => $request->alamat,
             'tglLahir'              => $request->tglLahir,
-            'ppn'                   => $request->ppn,
-            'ongkir'                => $request->ongkir,
         ];
 
         $data::where('id', $id)->update($field);

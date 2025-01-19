@@ -13,8 +13,6 @@ class transaksi extends Model
     protected $fillable = [
         'code_transaksi',
         'total_qty',
-        'ppn',
-        'ongkir',
         'total_harga',
         'nama_customer',
         'alamat',

@@ -30,8 +30,6 @@ class User extends Authenticatable
         'password',     // Password
         'alamat',       // Alamat pengguna
         'tglLahir',     // Tanggal lahir
-        'ppn',          // Pajak (jika ada)
-        'ongkir',       // Ongkir (jika ada)
         'is_active',    // Status aktif
         'role',         // Role pengguna
         'nik',          // NIK pengguna (tambahkan jika diperlukan)

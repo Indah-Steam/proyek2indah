@@ -69,11 +69,7 @@ class Controller extends BaseController
         $qtyBarang = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])
             ->sum('qty');
     
-        // Hitung total PPN dan Ongkir
-        $ppn = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])
-            ->sum('ppn');
-        $ongkir = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])
-            ->sum('ongkir');
+        
     
         // Ambil nama ekspedisi dan pembayaran
         $namaEkspedisi = Ekspedisi::pluck('namaEkspedisi');
@@ -85,8 +81,6 @@ class Controller extends BaseController
             'detailBelanja' => $detailBelanja,
             'jumlahbarang'  => $jumlahBarang,
             'qtyOrder'      => $qtyBarang,
-            'ppn'           => $ppn,
-            'ongkir'        => $ongkir,
             'codeTransaksi' => $codeTransaksi,
             'namaEkspedisi' => $namaEkspedisi,
             'namaPembayaran'=> $namaPembayaran,
@@ -116,8 +110,6 @@ class Controller extends BaseController
             'id_transaksi' => $codeTransaksi,
             'id_barang'    => $data['idBarang'],
             'qty'          => $data['qty'],
-            'ppn'          => $product->ppn,
-            'ongkir'       => $product->ongkir,
             'price'        => $data['total']
         ]);
     
@@ -136,7 +128,6 @@ class Controller extends BaseController
         $data = $request->all();
         $dbTransaksi = new transaksi();
         $dbTransaksi->code_transaksi    = $data['code'];
-        $dbTransaksi->total_qty         = $data['totalQty'];
         $dbTransaksi->total_harga       = $data['dibayarkan'];
         $dbTransaksi->nama_customer     = $data['namaPenerima'];
         $dbTransaksi->alamat            = $data['alamatPenerima'];

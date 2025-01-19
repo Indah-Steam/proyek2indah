@@ -32,7 +32,7 @@
                         <div class="row mb-3">
                             <label for="ekspedisi" class="col-form-label col-sm-3">Ekspedisi</label>
                             <div class="col-sm-9">
-                                <select name="ekspedisi" class="form-control eksp" id="ekspedisi">
+                                <select name="ekspedisi" class="form-control" id="ekspedisi">
                                     <option value="">-- Pilih Ekspedisi --</option>
                                     <?php foreach($namaEkspedisi as $ekspedisi): ?>
                                         <option value="<?php echo strtolower(str_replace(' ', '', $ekspedisi)); ?>"><?php echo $ekspedisi; ?></option>
@@ -69,26 +69,12 @@
                                     name="totalBelanja" value="{{ $detailBelanja }}" readonly>
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label for="ppn" class="col-form-label col-sm-6">PPN</label>
-                            <div class="col-sm-6">
-                                <input type="number" class="form-control ppn" id="ppn"
-                                    name="ppn" value="{{ $ppn }}" readonly>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="ongkir" class="col-form-label col-sm-6">Ongkir</label>
-                            <div class="col-sm-6">
-                                <input type="number" class="form-control ongkir" id="ongkir" name="ongkir"
-                                value="{{ $ongkir }}" readonly>
-                            </div>
-                        </div>
                         <hr>
                         <div class="row mb-3">
                             <label for="dibayarkan" class="col-form-label col-sm-6">Total</label>
                             <div class="col-sm-6">
                                 <input type="number" class="form-control dibayarkan" id="dibayarkan" name="dibayarkan"
-                                    value="0" readonly>
+                                    value="{{ $detailBelanja * $jumlahbarang}}" readonly>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -99,15 +85,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-    
 
-                        <div class="row mb-3">
-                            <label for="dibayarkan" class="col-form-label col-sm-6">Total Quantity</label>
-                            <div class="col-sm-6">
-                                <input type="number" class="form-control dibayarkan" id="dibayarkan" name="totalQty"
-                                    value="{{ $qtyOrder }}" readonly>
-                            </div>
-                        </div>
 
                         <button type="submit" class="btn btn-success w-100">
                             <i class="fas fa-print"></i>

@@ -14,8 +14,6 @@ class modelDetailTransaksi extends Model
         'id_transaksi',
         'id_barang',
         'qty',
-        'ppn',
-        'ongkir',
         'price',
         'status',
     ];
