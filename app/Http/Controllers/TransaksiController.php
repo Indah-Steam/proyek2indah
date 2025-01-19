@@ -24,7 +24,6 @@ class TransaksiController extends Controller
         ]);
     }
 
-
     public function addTocart(Request $request)
     {
         $idProduct = $request->input('idProduct');

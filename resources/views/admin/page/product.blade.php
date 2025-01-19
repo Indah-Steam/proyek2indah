@@ -20,6 +20,7 @@
                         <th>SKU</th>
                         <th>Product Name</th>
                         <th>Price</th>
+                        <th>Size</th>
                         <th>Stock</th>
                         <th>#</th>
                     </tr>
@@ -40,6 +41,7 @@
                                 <td>{{ $x->sku }}</td>
                                 <td>{{ $x->nama_product }}</td>
                                 <td>{{ $x->harga }}</td>
+                                <td>{{ $x->size }}</td>
                                 <td>{{ $x->quantity }}</td>
                                 <td>
                                     <input type="hidden" id="sku" value="{{ $x->sku }}">

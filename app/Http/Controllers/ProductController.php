@@ -45,11 +45,10 @@ class ProductController extends Controller
         $data->nama_product = $request->nama;
         $data->harga        = $request->harga;
         $data->quantity     = $request->quantity;
-        $data->ppn          = $request->ppn;
-        $data->ongkir       = $request->ongkir;
+        $data->size         = $request->size; // Menambahkan size
         $data->discount     = 10 / 100;
         $data->is_active    = 1;
-
+    
         if ($request->hasFile('foto')) {
             $photo = $request->file('foto');
             $filename = date('Ymd') . '_' . $photo->getClientOriginalName();
@@ -60,9 +59,7 @@ class ProductController extends Controller
         Alert::toast('Data berhasil disimpan', 'success');
         return redirect()->route('product');
     }
-
-
-
+    
     public function show($id)
     {
         $data = product::findOrFail($id);
@@ -76,7 +73,33 @@ class ProductController extends Controller
         )->render();
     }
 
-    public function update(UpdateproductRequest $request, product $product, $id)
+    public function showForm($id)
+{
+    // Ambil data produk berdasarkan ID
+    $product = Product::findOrFail($id);
+
+    // Ambil ukuran yang tersedia dari kolom 'size' di tabel products
+    // Misalnya, ukuran disimpan dalam format JSON atau string yang dipisahkan dengan koma
+    $sizes = $product->size ? explode(',', $product->size) : []; // Jika ukuran dipisahkan koma
+
+    // Jika ukuran disimpan dalam JSON, gunakan json_decode
+    // $sizes = $product->size ? json_decode($product->size, true) : [];
+
+    // Return ke view dengan data yang dibutuhkan
+    return view(
+        'admin.modal.editModal',
+        [
+            'title' => 'Edit Data Product',
+            'product' => $product,
+            'sizes' => $sizes,
+        ]
+    )->render();
+}
+
+    
+    
+
+    public function update(UpdateproductRequest $request, $id)
     {
         $data = product::findOrFail($id);
 
@@ -93,9 +116,8 @@ class ProductController extends Controller
             'sku'                   => $request->sku,
             'nama_product'          => $request->nama,
             'harga'                 => $request->harga,
+            'size'                  => $request->size,
             'quantity'              => $request->quantity,
-            'ppn'                   => $request->ppn,
-            'ongkir'                => $request->ongkir,
             'discount'              => 10 / 100,
             'is_active'             => 1,
             'foto'                  => $filename,
@@ -105,8 +127,6 @@ class ProductController extends Controller
         Alert::toast('Data berhasil diupdate', 'success');
         return redirect()->route('product');
     }
-
-
 
     public function destroy($id)
     {

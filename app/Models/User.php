@@ -13,39 +13,49 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * Nama tabel di database.
+     *
+     * @var string
+     */
+    protected $table = 'users'; // Pastikan tabel ini sesuai dengan nama di database Anda.
+
+    /**
+     * Kolom yang dapat diisi secara massal.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'alamat',
-        'tglLahir',
-        'ppn',
-        'ongkir',
-        'is_active',
-        'role',
+        'name',         // Nama pengguna
+        'email',        // Email pengguna
+        'password',     // Password
+        'alamat',       // Alamat pengguna
+        'tglLahir',     // Tanggal lahir
+        'ppn',          // Pajak (jika ada)
+        'ongkir',       // Ongkir (jika ada)
+        'is_active',    // Status aktif
+        'role',         // Role pengguna
+        'nik',          // NIK pengguna (tambahkan jika diperlukan)
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * Kolom yang harus disembunyikan saat serialisasi.
      *
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password',         // Menyembunyikan password
+        'remember_token',   // Menyembunyikan token "remember me"
     ];
 
     /**
-     * The attributes that should be cast.
+     * Casting untuk tipe data tertentu.
      *
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'email_verified_at' => 'datetime', // Cast email_verified_at ke datetime
+        'password' => 'hashed',           // Hashing otomatis untuk password
+        'is_active' => 'boolean',         // Cast is_active ke boolean
+        'tglLahir' => 'date',             // Cast tglLahir ke date
     ];
 }

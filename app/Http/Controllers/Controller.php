@@ -53,8 +53,7 @@ class Controller extends BaseController
             'data'      => $db
         ]);
     }
-
-
+    
     // Check out
     public function checkout()
     {
@@ -96,31 +95,38 @@ class Controller extends BaseController
     
     public function prosesCheckout(Request $request, $id)
     {
+        $request->validate([
+            'idBarang' => 'required|exists:products,id',
+            'qty'      => 'required|integer|min:1',
+            'total'    => 'required|numeric|min:0',
+        ]);
+    
         $data = $request->all();
         $code = transaksi::count();
-        $codeTransaksi = date('Ymd') . $code + 1;
+        $codeTransaksi = date('Ymd') . ($code + 1);
+    
         $product = Product::find($data['idBarang']);
-
-        $detailTransaksi = new modelDetailTransaksi();
-        $fieldDetail = [
+        if (!$product) {
+            Alert::toast('Produk tidak ditemukan', 'error');
+            return back();
+        }
+    
+        // Proses detail transaksi
+        modelDetailTransaksi::create([
             'id_transaksi' => $codeTransaksi,
             'id_barang'    => $data['idBarang'],
             'qty'          => $data['qty'],
             'ppn'          => $product->ppn,
             'ongkir'       => $product->ongkir,
             'price'        => $data['total']
-        ];
-        $detailTransaksi::create($fieldDetail);
-
-
-
-        $fieldCart = [
-            'qty'          => $data['qty'],
-            'price'        => $data['total'],
-            'status'       => 1,
-        ];
-        tblCart::where('id', $id)->update($fieldCart);
-
+        ]);
+    
+        tblCart::where('id', $id)->update([
+            'qty'   => $data['qty'],
+            'price' => $data['total'],
+            'status'=> 1,
+        ]);
+    
         Alert::toast('Checkout Berhasil', 'success');
         return redirect()->route('checkout');
     }
@@ -134,7 +140,7 @@ class Controller extends BaseController
         $dbTransaksi->total_harga       = $data['dibayarkan'];
         $dbTransaksi->nama_customer     = $data['namaPenerima'];
         $dbTransaksi->alamat            = $data['alamatPenerima'];
-        $dbTransaksi->no_tlp            = $data['tlp'];
+        $dbTransaksi->no_tlp            = $data['no_tlp'];
 
         $dbTransaksi->save();
 
@@ -263,15 +269,6 @@ class Controller extends BaseController
         return redirect()->route('pembayaran');
     }
 
-
-
-
-
-
-
-
-
-
     public function admin()
     {
         $dataProduct = product::count();
@@ -298,26 +295,35 @@ class Controller extends BaseController
     public function loginProses(Request $request)
     {
         Session::flash('error', $request->email);
-        $dataLogin = [
-            'email' => $request->email,
-            'password'  => $request->password,
-        ];
 
-        $user = new User;
-        $proses = $user::where('email', $request->email)->first();
-
+        // Ambil user berdasarkan email
+        $proses = User::where('email', $request->email)->first();
+    
+        // Pastikan user ditemukan
+        if (!$proses) {
+            Session::flash('error', 'Email tidak terdaftar');
+            return back();
+        }
+    
+        // Cek apakah role adalah admin
         if ($proses->role !== "admin") {
             Session::flash('error', 'Kamu bukan admin');
             return back();
+        }
+    
+        // Cek email dan password menggunakan Auth::attempt
+        $dataLogin = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+    
+        if (Auth::attempt($dataLogin)) {
+            Alert::toast('Kamu berhasil login', 'success');
+            $request->session()->regenerate();
+            return redirect()->intended('/admin/dashboard');
         } else {
-            if (Auth::attempt($dataLogin)) {
-                Alert::toast('Kamu berhasil login', 'success');
-                $request->session()->regenerate();
-                return redirect()->intended('/admin/dashboard');
-            } else {
-                Alert::toast('Email dan Password salah', 'error');
-                return back();
-            }
+            Alert::toast('Email dan Password salah', 'error');
+            return back();
         }
     }
 

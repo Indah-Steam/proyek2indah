@@ -100,8 +100,6 @@ class UserController extends Controller
         $data->no_tlp       = $request->no_tlp;
         $data->alamat       = $request->alamat;
         $data->tglLahir     = $request->date;
-        $data->ppn          = $request->ppn;
-        $data->ongkir       = $request->ongkir;
         $data->role         = "member";
 
         // dd($request);die;

@@ -33,6 +33,12 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
+                        <label for="size" class="col-sm-5 col-form-label">Size</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="size" name="size" value="{{ $data->size }}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
                         <label for="quantity" class="col-sm-5 col-form-label">Qty Product</label>
                         <div class="col-sm-7">
                             <input type="number" class="form-control" id="quantity" name="quantity"
