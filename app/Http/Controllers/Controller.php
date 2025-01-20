@@ -68,7 +68,8 @@ class Controller extends BaseController
             ->count('id_barang');
         $qtyBarang = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])
             ->sum('qty');
-    
+        $ppn = $detailBelanja * $jumlahBarang * 0.10;
+        $ongkir = $detailBelanja * $jumlahBarang * 0.05;
         
     
         // Ambil nama ekspedisi dan pembayaran
@@ -79,6 +80,8 @@ class Controller extends BaseController
             'title'         => 'Check Out',
             'count'         => $countKeranjang,
             'detailBelanja' => $detailBelanja,
+            'ppn'           => $ppn,
+            'ongkir'        => $ongkir,
             'jumlahbarang'  => $jumlahBarang,
             'qtyOrder'      => $qtyBarang,
             'codeTransaksi' => $codeTransaksi,
@@ -324,6 +327,6 @@ class Controller extends BaseController
         request()->session()->invalidate();
         request()->session()->regenerateToken();
         Alert::toast('Kamu berhasil Logout', 'success');
-        return redirect('admin');
+        return redirect('');
     }
 }
