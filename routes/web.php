@@ -65,4 +65,3 @@ Route::post('/admin/ekspedisi/update/{id}', [Controller::class, 'updateEkspedisi
 Route::get('/admin/ekspedisi/deleteData/{id}', [Controller::class, 'destroyEkspedisi'])->name('deleteEkspedisi');
 
 Route::get('/add-modal', [ProductController::class, 'addModal'])->name('addModal');
-Route::get('/edit-modal/{id}', [ProductController::class, 'editModal'])->name('editModal');
