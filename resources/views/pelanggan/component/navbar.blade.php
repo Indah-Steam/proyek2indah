@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark nav-conten" style="background-color: rgb(22, 47, 44);">
     <div class="container">
-        <a class="navbar-brand" href="#"><i class="fa-brands fa-black-tie">ToBa Online</i></a>
+        <a class="navbar-brand" href="#"><i class="fa-brands fa-black-tie">Toko Online</i></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
