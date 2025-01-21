@@ -35,16 +35,16 @@
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <label for="qty" class="col-sm-2 col-form-label fs-5">Quantity</label>
-                        <div class="col-sm-5 d-flex">
-                            <button type="button" class="rounded-start bg-secondary p-2 border border-0 plus"
-                                id="plus_{{ $x->product->id }}">+</button>
-                            <input type="number" name="qty" class="form-control w-25 text-center qty"
-                                id="qty_{{ $x->product->id }}" value="{{ $x->qty }}" min="1">
-                            <button type="button" class="rounded-end bg-secondary p-2 border border-0 minus" 
-                                id="minus_{{ $x->product->id }}" disabled>-</button>
-                        </div>
-                    </div>
+                                <label for="qty" class="col-sm-2 col-form-label fs-5">Quantity</label>
+                                <div class="col-sm-5 d-flex">
+                                    <button class="rounded-start bg-secondary p-2 border border-0 plus"
+                                        id="plus">+</button>
+                                    <input type="number" name="qty" class="form-control w-25 text-center qty"
+                                        id="qty" name="qty" value="{{ $x->qty }}">
+                                    <button class="rounded-end bg-secondary p-2 border border-0 minus" id="minus"
+                                        disabled>-</button>
+                                </div>
+                            </div>
                     <div class="row">
                         <label for="total_{{ $x->product->id }}" class="col-sm-2 col-form-label fs-5">Total</label>
                         <input type="text" class="col-sm-2 form-control w-25 border-0 fs-4 total" name="total"
