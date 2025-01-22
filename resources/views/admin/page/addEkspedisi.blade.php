@@ -9,7 +9,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3 row">
-                        <label for="SKU" class="col-sm-5 col-form-label">namaEkspedisi</label>
+                        <label for="SKU" class="col-sm-5 col-form-label">NamaEkspedisi</label>
                         <div class="col-sm-7">
                             <input type="text" class="form-control-plaintext" id="namaEkspedisi" name="namaEkspedisi">
                         </div>
