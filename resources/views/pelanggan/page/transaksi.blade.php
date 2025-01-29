@@ -26,12 +26,12 @@
                     <div class="row mb-2">
                         <label for="size_{{ $x->product->id }}" class="col-sm-2 col-form-label fs-5">Size</label>
                         <div class="col-sm-5">
-                            <select name="size" id="size_{{ $x->product->id }}" class="form-control" required>
-                                <option value="">-- Pilih Ukuran --</option>
-                                @foreach (explode(',', $x->product->size) as $size)
-                                <option value="{{ $size }}" {{ $x->size == $size ? 'selected' : '' }}>{{ $size }}</option>
-                                @endforeach
-                            </select>
+                        <select name="size" id="size_{{ $x->product->id }}" class="form-control" required>
+                            <option value="">-- Pilih Ukuran --</option>
+                            @foreach ($size as $sizes)
+                                <option value="{{ $sizes }}">{{ $sizes }}</option>
+                            @endforeach
+                        </select>
                         </div>
                     </div>
                     <div class="row mb-2">

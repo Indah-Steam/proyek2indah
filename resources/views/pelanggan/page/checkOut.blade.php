@@ -12,21 +12,21 @@
                             <label for="nama_penerima" class="col-form-label col-sm-3">Nama Penerima</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="nama_penerima" name="namaPenerima"
-                                    placeholder="Masukkan Nama Penerima" autofocus required>
+                                    value="{{ $users->name ?? '' }}" placeholder="Masukkan Nama Penerima" autofocus required>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="alamat_penerima" class="col-form-label col-sm-3">Alamat Penerima</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="alamat_penerima" name="alamatPenerima"
-                                    placeholder="Masukkan Alamat Penerima" required>
+                                    value="{{ $users->alamat ?? '' }}" placeholder="Masukkan Alamat Penerima" required>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="no_tlp" class="col-form-label col-sm-3">No. Telp Penerima</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="no_tlp" name="no_tlp"
-                                    placeholder="Masukkan No. Telp Penerima" required>
+                                    value="{{ $users->no_tlp ?? '' }}" placeholder="Masukkan No. Telp Penerima" required>
                             </div>
                         </div>
                         <div class="row mb-3">

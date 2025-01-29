@@ -7,6 +7,7 @@ use App\Models\product;
 use App\Models\tblCart;
 use App\Models\transaksi;
 use App\Models\User;
+use App\Models\Size;
 use App\Models\Ekspedisi;
 use App\Models\pembayaran;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -45,18 +46,20 @@ class Controller extends BaseController
         $db = tblCart::with('product')->where(['idUser' => 'guest123', 'status' => 0])->get();
         $countKeranjang = tblCart::where(['idUser' => 'guest123', 'status' => 0])->count();
 
-
+        $size = Size::pluck('nama_size');
 
         return view('pelanggan.page.transaksi', [
             'title'     => 'keranjang',
             'count'     => $countKeranjang,
-            'data'      => $db
+            'data'      => $db,
+            'size'      => $size
         ]);
     }
     
     // Check out
     public function checkout()
     {
+        $users = Auth::user();
         $countKeranjang = tblCart::where(['idUser' => 'guest123', 'status' => 0])->count();
         $code = transaksi::count();
         $codeTransaksi = date('Ymd') . ($code + 1);
@@ -87,6 +90,7 @@ class Controller extends BaseController
             'codeTransaksi' => $codeTransaksi,
             'namaEkspedisi' => $namaEkspedisi,
             'namaPembayaran'=> $namaPembayaran,
+            'users'         => $users
         ]);
     }
     
