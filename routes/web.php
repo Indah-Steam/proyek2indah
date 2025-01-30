@@ -29,6 +29,12 @@ Route::post('/addTocart', [TransaksiController::class, 'addTocart'])->name('addT
 Route::post('/checkout/proses/{id}', [Controller::class, 'prosesCheckout'])->name('checkout.product');
 Route::get('/checkout', [Controller::class, 'checkout'])->name('checkout');
 Route::post('/checkout/prosesPembayaran', [Controller::class, 'prosesPembayaran'])->name('checkout.bayar');
+use App\Models\Daerah;
+
+Route::get('/get-ongkir/{id}', function ($id) {
+    $ongkir = Daerah::where('id', $id)->value('ongkir');
+    return response()->json(['ongkir' => $ongkir]);
+});
 
 // User Management Routes
 Route::post('/storePelanggan', [UserController::class, 'storePelanggan'])->name('storePelanggan');

@@ -23,6 +23,17 @@
                             </div>
                         </div>
                         <div class="row mb-3">
+                            <label for="ekspedisi" class="col-form-label col-sm-3">Daerah pengiriman</label>
+                            <div class="col-sm-9">
+                                <select id="daerah" name="daerah" class="border p-2">
+                                    <option value="">-- Pilih Daerah --</option>
+                                    @foreach ($daerahs as $daerah)
+                                        <option value="{{ $daerah->daerah_id }}" data-ongkir="{{ $daerah->ongkir }}">{{ $daerah->nama_daerah }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label for="no_tlp" class="col-form-label col-sm-3">No. Telp Penerima</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="no_tlp" name="no_tlp"
@@ -109,4 +120,24 @@
             </div>
         </div>
     </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#daerah').change(function () {
+            let ongkir = $(this).find(':selected').data('ongkir') || 0;
+
+            // Update nilai ongkir
+            $('#ongkir').val(ongkir);
+
+            // Hitung ulang total pembayaran
+            let totalBelanja = parseFloat($('#totalBelanja').val()) || 0;
+            let jumlahBarang = parseInt($('#jumlahBarang').val()) || 0;
+            let ppn = parseFloat($('#ppn').val()) || 0;
+
+            let total = (totalBelanja * jumlahBarang) + ppn + ongkir;
+            $('#dibayarkan').val(total);
+        });
+    });
+</script>
+ 
 @endsection

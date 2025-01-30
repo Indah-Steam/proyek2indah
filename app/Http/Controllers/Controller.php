@@ -7,6 +7,7 @@ use App\Models\product;
 use App\Models\tblCart;
 use App\Models\transaksi;
 use App\Models\User;
+use App\Models\Daerah;
 use App\Models\Size;
 use App\Models\Ekspedisi;
 use App\Models\pembayaran;
@@ -72,7 +73,9 @@ class Controller extends BaseController
         $qtyBarang = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])
             ->sum('qty');
         $ppn = $detailBelanja * $jumlahBarang * 0.10;
-        $ongkir = $detailBelanja * $jumlahBarang * 0.05;
+
+        // Ambil semua daerah beserta ongkir
+        $daerahs = Daerah::select('daerah_id', 'nama_daerah', 'ongkir')->get();
         
     
         // Ambil nama ekspedisi dan pembayaran
@@ -84,7 +87,8 @@ class Controller extends BaseController
             'count'         => $countKeranjang,
             'detailBelanja' => $detailBelanja,
             'ppn'           => $ppn,
-            'ongkir'        => $ongkir,
+            'ongkir'        => 0,
+            'daerahs'       => $daerahs,
             'jumlahbarang'  => $jumlahBarang,
             'qtyOrder'      => $qtyBarang,
             'codeTransaksi' => $codeTransaksi,
@@ -116,6 +120,7 @@ class Controller extends BaseController
         modelDetailTransaksi::create([
             'id_transaksi' => $codeTransaksi,
             'id_barang'    => $data['idBarang'],
+            // 'daerah_id'    => 
             'qty'          => $data['qty'],
             'price'        => $data['total']
         ]);
