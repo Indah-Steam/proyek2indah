@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="ekspedisi" class="col-form-label col-sm-3">Daerah pengiriman</label>
+                            <label for="ekspedisi" class="col-form-label col-sm-3">Daerah Tujuan</label>
                             <div class="col-sm-9">
                                 <select id="daerah" name="daerah" class="border p-2">
                                     <option value="">-- Pilih Daerah --</option>
