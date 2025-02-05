@@ -10,7 +10,8 @@ class Size extends Model
     use HasFactory;
     protected $table = 'size';
     protected $fillable = [
-        'nama_size'
+        'nama_size',
+        'addprice'
     ];
 
 }

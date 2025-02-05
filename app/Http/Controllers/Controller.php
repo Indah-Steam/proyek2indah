@@ -42,18 +42,20 @@ class Controller extends BaseController
             'count'     => $countKeranjang,
         ]);
     }
+    
     public function transaksi()
     {
         $db = tblCart::with('product')->where(['idUser' => 'guest123', 'status' => 0])->get();
         $countKeranjang = tblCart::where(['idUser' => 'guest123', 'status' => 0])->count();
-
-        $size = Size::pluck('nama_size');
-
+    
+        // Ambil size dan addprice sebagai associative array
+        $sizes = Size::pluck('addprice', 'nama_size');
+    
         return view('pelanggan.page.transaksi', [
             'title'     => 'keranjang',
             'count'     => $countKeranjang,
             'data'      => $db,
-            'size'      => $size
+            'sizes'     => $sizes
         ]);
     }
     
@@ -72,11 +74,10 @@ class Controller extends BaseController
             ->count('id_barang');
         $qtyBarang = modelDetailTransaksi::where(['id_transaksi' => $codeTransaksi, 'status' => 0])
             ->sum('qty');
-        $ppn = $detailBelanja * $jumlahBarang * 0.10;
 
         // Ambil semua daerah beserta ongkir
         $daerahs = Daerah::select('daerah_id', 'nama_daerah', 'ongkir')->get();
-        
+        $ekspedisi = Ekspedisi::select('namaEkspedisi', 'harga')->get();
     
         // Ambil nama ekspedisi dan pembayaran
         $namaEkspedisi = Ekspedisi::pluck('namaEkspedisi');
@@ -86,15 +87,14 @@ class Controller extends BaseController
             'title'         => 'Check Out',
             'count'         => $countKeranjang,
             'detailBelanja' => $detailBelanja,
-            'ppn'           => $ppn,
-            'ongkir'        => 0,
+            'ekspedisi'        => $ekspedisi,
             'daerahs'       => $daerahs,
             'jumlahbarang'  => $jumlahBarang,
             'qtyOrder'      => $qtyBarang,
             'codeTransaksi' => $codeTransaksi,
             'namaEkspedisi' => $namaEkspedisi,
             'namaPembayaran'=> $namaPembayaran,
-            'users'         => $users
+            'users'         => $users,
         ]);
     }
     
